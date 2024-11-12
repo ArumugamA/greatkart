@@ -13,3 +13,13 @@ def store(request, category_slug=None):
         products = Product.objects.filter(is_available=True)
     context = {'products': products}
     return render(request, 'store/store.html', context)
+
+
+def product_detail(request, category_slug, product_slug):
+    try:
+        product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+    except Exception as e:
+        raise e
+
+    context = {'product': product}
+    return render(request, 'store/product_detail.html', context)
