@@ -4,7 +4,7 @@ from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
-def cart(request, total=0, quantity=0, cart_items=None):
+def cart(request, total=0, quantity=0, tax=0, grand_total=0, cart_items=None):
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, is_active=True)
